@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ojo Dulce</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(-45deg, #b48bcc, #f5eaf1, #e9dfef, #d38cf6);
+            background-size: 400% 400%;
+            animation: fondoAnimado 10s ease infinite;
+            color: #c32bd1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        @keyframes fondoAnimado {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: black; /* Texto en negro */
+            text-shadow: 4px 4px 10px #ffb6c1; /* Brillo rosa pastel */
+        }
+
+        .contenedor-botones {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 15px;
+            background-color: #d6c3ea;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background-color: #ffeaf3;
+        }
+
+        .info {
+            display: none;
+            margin-top: 10px;
+            background: #fff8fc;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 12px rgba(0,0,0,0.2);
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .collage {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            padding: 2rem;
+            max-width: 700px;
+            margin: auto;
+            animation: aparecerSuave 1.5s ease;
+        }
+
+        .foto {
+            position: relative;
+            display: inline-block;
+        }
+
+        .foto img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, filter 0.5s ease;
+        }
+
+        .foto:hover img {
+            transform: scale(1.08) rotate(-2deg);
+            filter: brightness(110%) contrast(105%);
+        }
+
+        .corazon {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 1.5rem;
+            opacity: 0.8;
+            animation: flotar 2s infinite ease-in-out;
+        }
+
+        @keyframes flotar {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes aparecerSuave {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(45deg, #ffe0ec, #ffb3c6);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        footer p {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #131213;
+            text-shadow: 2px 2px #fff;
+        }
+
+    </style>
+    <script>
+        function mostrar(id) {
+            var elemento = document.getElementById(id);
+            elemento.style.display = (elemento.style.display === "block") ? "none" : "block";
+        }
+    </script>
+</head>
+<body>
+
+    <h1>🎀 Ojo Dulce </h1>
+    <div class="contenedor-botones">
+  <button onclick="mostrar('carrito')">🛍️ Ver Carrito</button>
+</div>
+<div id="carrito" class="info">
+    <button onclick="finalizarPedido()">📲 Finalizar Pedido por WhatsApp</button>
+
+
+  <h2>🛒 Tu Carrito</h2>
+  <ul id="lista-carrito"></ul>
+  <p><strong>Total:</strong> $<span id="total">0</span> MXN</p>
+  <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+
+</div>
+
+    <div class="contenedor-botones">
+        <button onclick="mostrar('Menu')">Menú</button>
+        <button onclick="mostrar('direccion')">Dirección</button>
+        <button onclick="mostrar('contacto')">Mensaje</button>
+    </div>
+<div id="Menu" class="info">
+  <h2> Menú 😋</h2>
+  <button onclick="agregarProducto('🧇 Waffles', 35)">🧇 Waffles</button>
+  <button onclick="agregarProducto('🌮 Dorilocos', 30)">🌮 Dorilocos</button>
+  <button onclick="agregarProducto('🥤 Frappes', 40)">🥤 Frappes</button>
+  <button onclick="agregarProducto('🍪 Crepas', 38)">🍪 Crepas</button>
+  <button onclick="agregarProducto('🥞 Hotcakes', 32)">🥞 Hotcakes</button>
+  <button onclick="agregarProducto('🍌 Plátanos Fritos', 25)">🍌 Plátanos Fritos</button>
+</div>
+
+    <div id="direccion" class="info">
+        <h2> <img src="ubi.jpg" alt="ubi" width="20">Dirección</h2>
+        <p><a href="https://maps.app.goo.gl/nyKKtRpDtFXyhsjq7" target="_blank">OJO DULCE VISITAME EN GOOGLE MAPS</a></p>
+    </div>
+
+    <div id="contacto" class="info">
+        <h2>😟 Escaneame y has tus pedidos ya 😟</h2>
+        <img src="FELIPE.png" alt="Código QR" width="300">
+        <p>4271632368</p>
+    </div>
+
+  <body>
+  <h1>Postres </h1>
+  <section class="collage">
+    <div class="foto">
+        <img src="frappe.jpg" alt="FRAPPE" width="250"> 
+      <span class="corazon">❤️</span>
+    </div>
+    <div class="foto">
+        <img src="chachipapas.jpg" alt="Salchipapas" width="200"> 
+      <span class="corazon">💖</span>
+    </div>
+    <div class="foto">
+       <img src="Waffle.jpg" alt="Waffless" width="200"> 
+      <span class="corazon">💕</span>
+    </div>
+    <div class="foto">
+        <img src="2pa2.jpg" alt="twins" width="300"> 
+      <span class="corazon">🍓</span>
+    </div>
+    <div class="foto">
+        <img src="Hotcakes.jpg" alt="hotackes" width="300"> 
+      <span class="corazon">🎂</span>
+    </div>
+    <div class="foto"> 
+      <img src="hamburgesa.jpg" alt="frappe" width="200"> 
+      <span class="corazon">🍪</span>
+    </div>
+    <div class="foto">
+      <img src="malteadea.jpg" alt="Malteada" width="300"> 
+      <span class="corazon">🍪</span>
+    </div>
+    <div class="foto">
+      <img src="biñuelos.jpg" alt="dulce" width="400"> 
+      <span class="corazon">🍪</span>
+    </div>
+    <div class="foto">
+      <img src="hotdog.jpg" alt="hot dog" width="300"> 
+      <span class="corazon">🍪</span>
+    </div>
+  </section>
+</body>
+    <footer>
+        <p>🎀 Créditos: Jasmine Garduño Sánchez y Itzel Orozco García 🎀</p>
+        <p>✨ Ojo Dulce – ¡Visítanos y tus sueños se harán realidad al probar nuestros deliciosos postres! ✨</p>
+    </footer>
+<script>
+let carrito = [];
+let total = 0;
+
+function agregarProducto(nombre, precio) {
+  carrito.push({ nombre, precio });
+  total += precio;
+  actualizarCarrito();
+  mostrar('carrito');
+}
+
+function actualizarCarrito() {
+  const lista = document.getElementById('lista-carrito');
+  const totalSpan = document.getElementById('total');
+  lista.innerHTML = '';
+  carrito.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = `${item.nombre} - $${item.precio} MXN`;
+    lista.appendChild(li);
+  });
+  totalSpan.textContent = total.toFixed(2);
+}
+
+function vaciarCarrito() {
+  carrito = [];
+  total = 0;
+  actualizarCarrito();
+}
+function finalizarPedido() {
+  const numero = "4271632368";
+  const mensaje = "Hola, deseo ordenar esto";
+  const enlace = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+  window.open(enlace, "_blank");
+ function finalizarPedido() {
+  guardarPedido(); // 💾 Guardar en la base de datos
+  const numero = "4271632368";
+  const mensaje = "Hola, deseo ordenar esto";
+  const enlace = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+  window.open(enlace, "_blank");
+}
+}
+</script>
+</body>
+</html>
